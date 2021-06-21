@@ -1,0 +1,168 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFirst\\SpecflowFirst.csproj": {}
+  },
+  "projects": {
+    "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFirst\\SpecflowFirst.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFirst\\SpecflowFirst.csproj",
+        "projectName": "SpecflowFirst",
+        "projectPath": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFirst\\SpecflowFirst.csproj",
+        "packagesPath": "C:\\Users\\visheshta.vashishth2\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFirst\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\visheshta.vashishth2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\SpecflowFramework.csproj": {
+                "projectPath": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\SpecflowFramework.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.10.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.17.0, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[3.141.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[3.141.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[91.0.4472.1900, )"
+            },
+            "Selenium.WebDriver.IEDriver": {
+              "target": "Package",
+              "version": "[3.150.1.2, )"
+            },
+            "SpecFlow": {
+              "target": "Package",
+              "version": "[3.8.14, )"
+            },
+            "SpecFlow.Assist.Dynamic": {
+              "target": "Package",
+              "version": "[1.4.2, )"
+            },
+            "SpecFlow.NUnit": {
+              "target": "Package",
+              "version": "[3.8.14, )"
+            },
+            "SpecFlow.Tools.MsBuild.Generation": {
+              "target": "Package",
+              "version": "[3.8.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\SpecflowFramework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\SpecflowFramework.csproj",
+        "projectName": "SpecflowFramework",
+        "projectPath": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\SpecflowFramework.csproj",
+        "packagesPath": "C:\\Users\\visheshta.vashishth2\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectNew-main\\ProjectNew-main\\SpecflowFramework\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\visheshta.vashishth2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

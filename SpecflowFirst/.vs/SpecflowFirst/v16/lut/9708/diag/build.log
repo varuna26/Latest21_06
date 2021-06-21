@@ -1,0 +1,4 @@
+[00:09:30.401 Verbose] - BuildManager - Property 'UseHostCompilerIfAvailable' evaluates to 'false' for project 'C:\Users\visheshta.vashishth2\source\repos\SpecflowFirst\SpecflowFirst.csproj'. This may prevent Live Unit Testing from working correctly.
+[00:09:30.401 Verbose] - BuildManager - Property UseHostCompilerIfAvailable evaluated to 'false' via:
+UseHostCompilerIfAvailable: '$(SpecFlow_UseHostCompilerIfAvailable)' @ C:\Users\visheshta.vashishth2\.nuget\packages\specflow.tools.msbuild.generation\3.8.14\build\SpecFlow.Tools.MsBuild.Generation.props:12
+  SpecFlow_UseHostCompilerIfAvailable: 'false' @ C:\Users\visheshta.vashishth2\.nuget\packages\specflow.tools.msbuild.generation\3.8.14\build\SpecFlow.Tools.MsBuild.Generation.props:11
