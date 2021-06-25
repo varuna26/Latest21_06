@@ -10,14 +10,14 @@ namespace SpecflowFirst.Steps
     {
         private DriverHelper _driverHelper;
         private readonly ScenarioContext _scenarioContext;
-        CommonPage genericPage;
+        CommonPage commonPage;
         LoginPage loginPage;
         public LoginSteps(DriverHelper driverHelper, ScenarioContext scenarioContext)
         {
             _driverHelper = driverHelper;
             _scenarioContext = scenarioContext;
             loginPage = new LoginPage(driverHelper.webDriver);
-            genericPage = new CommonPage(driverHelper.webDriver);
+            commonPage = new CommonPage(driverHelper.webDriver);
         }
 
         [Given(@"I am on community dev login page")]
@@ -72,7 +72,8 @@ namespace SpecflowFirst.Steps
         [When(@"The User tries logging in with Username and Password")]
         public void WhenTheUserTriesLoggingInWithUsernameAndPassword(Table table)
         {
-           
+            commonPage.NavigatetoUrl();
+            commonPage.Login("vv", "trakit1234");
         }
 
         [Then(@"The User should be able to login successfully")]

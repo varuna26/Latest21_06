@@ -1,17 +1,22 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace SpecflowFirst.Pages
 {
    public class PermittingPage
     {
         private IWebDriver _webDriver;
-
+        CommonPage common;
         public PermittingPage(IWebDriver webDriver)
         {
             _webDriver = webDriver;
+            common = new CommonPage(webDriver);
         }
 
         //use string[1] for options that cannot change
@@ -30,9 +35,14 @@ namespace SpecflowFirst.Pages
         };
 
         public const int typeCode = 2;
+        public IWebElement btnAddNotes => _webDriver.FindElement(By.Id("ctl09_C_ctl00_btnAddNotes"));
+        public IWebElement informationPane => _webDriver.FindElement(By.Id("ctl09"));
+        public IWebElement informationBar => _webDriver.FindElement(By.Id("ctl09_T"));
+        public IWebElement btnAddInspection => _webDriver.FindElement(By.Id("ctl14_C_ctl00_btnAddInspection"));
+        IWebElement inspectionPane => _webDriver.FindElement(By.Id("ctl14"));
+        public IWebElement inspectionBar => _webDriver.FindElement(By.Id("ctl14_T"));
 
-        IWebElement informationPane => _webDriver.FindElement(By.Id("ctl09"));
-        IWebElement informationBar => _webDriver.FindElement(By.Id("ctl09_T"));
+        public By informationBarLocator => By.Id("ctl09_T");
 
         //IWebElement editRecordAppliedDateCalendarButton => _webDriver.FindElement(By.Id("ctl09_C_ctl00_calAppliedDate_popupButton"));
         //IWebElement editRecordAppliedDateTodayButton => _webDriver.FindElement(By.Id("ctl09_C_ctl00_btnAppliedDateToday"));
@@ -181,5 +191,17 @@ namespace SpecflowFirst.Pages
         {
             return informationPane;
         }
+
+        public void HoverElement()
+        {
+            common.HoverToElement(btnAddNotes);
+        }
+
+        //public void ClickPane()
+        //{
+        //    Actions actions = new Actions(_webDriver);
+        //    actions.DoubleClick(informationBar);
+        //    Thread.Sleep(10000);
+        //}
     }
 }

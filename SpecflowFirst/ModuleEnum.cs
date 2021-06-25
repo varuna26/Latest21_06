@@ -7,13 +7,33 @@ namespace SpecflowFirst
     public enum ModuleEnum
     {
         Workspace,
-        Permit,
+        Permitting,
         LandManagement,
         Contacts
     }
 
     public enum FrameNameEnum
     {
-        FRMPERMIT
+        FRMPERMIT,
+        FRMLAND
+    }
+
+    public enum ActionType
+    {
+        Add,
+        Edit,
+        Delete,
+        Save
+    }
+
+    public enum PaneTypeEnum
+    {
+        Inspections,
+        Contacts,
+        FinancialInformation,
+        Chronology,
+        Reviews,
+        Permitting
+
     }
 }

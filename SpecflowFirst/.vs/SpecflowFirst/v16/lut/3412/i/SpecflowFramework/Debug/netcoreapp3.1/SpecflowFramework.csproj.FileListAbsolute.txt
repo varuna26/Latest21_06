@@ -1,0 +1,8 @@
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\b\SpecflowFramework\Debug\netcoreapp3.1\log4net.config
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\b\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.deps.json
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\b\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.dll
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\i\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.csproj.AssemblyReference.cache
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\i\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.AssemblyInfoInputs.cache
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\i\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.AssemblyInfo.cs
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\i\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.csproj.CopyComplete
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\.vs\SpecflowFirst\v16\lut\0\i\SpecflowFramework\Debug\netcoreapp3.1\SpecflowFramework.dll

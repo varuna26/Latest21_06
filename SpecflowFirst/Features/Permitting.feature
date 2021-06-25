@@ -1,6 +1,24 @@
 ﻿Feature: Permitting
 	Navigating to the Permitting Screen
 
-Scenario: Go to the Permitting screen
-	 Given The user is logged into the application
-	 When The user clicks 'Permitting' icon on the left Panel
+Background: 
+	Given The user is logged into the application
+	And The user is on 'Permitting' screen
+
+Scenario: Add notes in the main Pane on Permitting
+	Given 'Permitting' on 'Permitting' is expanded
+	And The user 'Add' Notes
+	When The user Saves Notes on the window
+	#Then The text entered should be visible when the user hovers over the Notes button
+
+Scenario: Add Inspection on Permitting
+	 Given 'Inspections' on 'Permitting' is expanded
+	 When The user 'Add' Inspection
+
+Scenario: Edit Permitting
+	Given 'Permitting' on 'Permitting' is expanded
+	When The user 'Edit' Permitting
+	Then The user should be able to update Permitting
+
+
+	 
