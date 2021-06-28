@@ -1,15 +1,9 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace SpecflowFirst.Pages
 {
-   public class PermittingPage
+    public class PermittingPage
     {
         private IWebDriver _webDriver;
         CommonPage common;
@@ -41,8 +35,9 @@ namespace SpecflowFirst.Pages
         public IWebElement btnAddInspection => _webDriver.FindElement(By.Id("ctl14_C_ctl00_btnAddInspection"));
         IWebElement inspectionPane => _webDriver.FindElement(By.Id("ctl14"));
         public IWebElement inspectionBar => _webDriver.FindElement(By.Id("ctl14_T"));
-
         public By informationBarLocator => By.Id("ctl09_T");
+        public By mainMenuLocator => By.Id("ctl09_C_ctl00_radActionsMenu");
+        public IWebElement mainMenu => _webDriver.FindElement(By.Id("ctl09_C_ctl00_radActionsMenu"));
 
         //IWebElement editRecordAppliedDateCalendarButton => _webDriver.FindElement(By.Id("ctl09_C_ctl00_calAppliedDate_popupButton"));
         //IWebElement editRecordAppliedDateTodayButton => _webDriver.FindElement(By.Id("ctl09_C_ctl00_btnAppliedDateToday"));
@@ -194,7 +189,7 @@ namespace SpecflowFirst.Pages
 
         public void HoverElement()
         {
-            common.HoverToElement(btnAddNotes);
+            common.HoverElement(btnAddNotes);
         }
 
         //public void ClickPane()

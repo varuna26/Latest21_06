@@ -256,3 +256,4 @@ D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\obj\Debug\netcoreapp3.1\Specflo
 D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\obj\Debug\netcoreapp3.1\SpecflowFirst.dll
 D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\obj\Debug\netcoreapp3.1\SpecflowFirst.pdb
 D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\obj\Debug\netcoreapp3.1\SpecflowFirst.genruntimeconfig.cache
+D:\ProjectNew-main\ProjectNew-main\SpecflowFirst\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll

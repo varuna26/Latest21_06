@@ -9,7 +9,7 @@ Scenario: Add notes in the main Pane on Permitting
 	Given 'Permitting' on 'Permitting' is expanded
 	And The user 'Add' Notes
 	When The user Saves Notes on the window
-	#Then The text entered should be visible when the user hovers over the Notes button
+	Then The text entered should be visible when the user hovers over the Notes button
 
 Scenario: Add Inspection on Permitting
 	 Given 'Inspections' on 'Permitting' is expanded

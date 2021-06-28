@@ -80,15 +80,14 @@ namespace SpecflowFirst.Steps
         public void WhenTheUserSavesNotesOnTheWindow()
         {
             notesPage.SaveNotes();
+            commonPage.SwitchToFrame(Convert.ToString(FrameNameEnum.FRMPERMIT));
         }
 
-        //[Then(@"The text entered should be visible when the user hovers over the Notes button")]
-        //public void ThenTheTextEnteredShouldBeVisibleWhenTheUserHoversOverTheNotesButton()
-        //{
-        //    commonPage.SwitchToFrame(Convert.ToString(FrameNameEnum.FRMPERMIT));
-        //    Thread.Sleep(10000);
-        //    commonPage.HoverToElement(permittingPage.btnAddNotes);
-        //}
+        [Then(@"The text entered should be visible when the user hovers over the Notes button")]
+        public void ThenTheTextEnteredShouldBeVisibleWhenTheUserHoversOverTheNotesButton()
+        {
+            commonPage.HoverElement(permittingPage.btnAddNotes);
+        }
 
         [When(@"The user '(.*)' Inspection")]
         public void WhenTheUserInspection(ActionType action)
@@ -103,9 +102,10 @@ namespace SpecflowFirst.Steps
         [When(@"The user '(.*)' Permitting")]
         public void WhenTheUserPermitting(ActionType action)
         {
-            if (action == ActionType.Add)
+            string actionText = Convert.ToString(action);
+            if (action == ActionType.Edit)
             {
-                commonPage.ClickElement(permittingPage.btnAddInspection);
+                commonPage.HoverMenuAndSelectOption(permittingPage.mainMenuLocator, actionText);
             }
         }
 
