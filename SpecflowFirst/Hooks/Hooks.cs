@@ -1,27 +1,41 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using log4net;
+using log4net.Config;
+using OpenQA.Selenium.Chrome;
+using SpecflowFramework.Utilities;
+using System;
+using System.IO;
+using System.Reflection;
 using TechTalk.SpecFlow;
 
 namespace SpecflowFirst.Drivers
 {
-    //  Logging goes here
-
+    
     [Binding]
     public sealed class Hooks
     {
-        DriverHelper _driverHelper;
-
-        public Hooks(DriverHelper driverHelper) => _driverHelper = driverHelper;
+        private DriverHelper _driverHelper;
+        private ScenarioContext _scenarioContext;
+        public Hooks(DriverHelper driverHelper, ScenarioContext scenarioContext)
+        {
+            _driverHelper = driverHelper;
+            _scenarioContext = scenarioContext;
+        }
 
         [BeforeScenario]
         public void SetupBeforeScenario()
         {
             _driverHelper.webDriver = new ChromeDriver();
+
+            LogHelper.Information(_scenarioContext.ScenarioInfo.Title);
+
         }
 
         [AfterScenario]
-        public void SetupAfterScenario()
+        public void TearDownAfterScenario()
         {
+            LogHelper.Information(_scenarioContext.ScenarioExecutionStatus.ToString());
             _driverHelper.webDriver.Quit();
+            //LogHelper.Information(_scenarioContext.ScenarioExecutionStatus.ToString());
         }
 
         //[BeforeFeature]
@@ -36,15 +50,17 @@ namespace SpecflowFirst.Drivers
 
         //}
 
-        //[BeforeStep]
-        //public void SetupStep()
-        //{
+        [BeforeStep]
+        public void SetupStep()
+        {
+            LogHelper.Information(Convert.ToString(_scenarioContext.StepContext.StepInfo.Text));
+        }
 
-        //}
-
-        //[AfterStep]
-        //public void TearDownStep()
-        //{ }
+        [AfterStep]
+        public void TearDownStep()
+        {
+            LogHelper.Information(_scenarioContext.StepContext.Status.ToString());
+        }
 
 
 

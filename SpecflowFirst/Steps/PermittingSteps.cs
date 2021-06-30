@@ -87,16 +87,6 @@ namespace SpecflowFirst.Steps
             permittingPage.HoverNotesOnPermitting();
         }
 
-        //[When(@"The user '(.*)' Inspection")]
-        //public void WhenTheUserInspection(ActionType action)
-        //{
-        //    if (action == ActionType.Add)
-        //    {
-        //        commonPage.ClickElement(permittingPage.btnAddInspection);
-        //    }
-        //        commonPage.SwitchToFrame(commonPage.newWindowFrame);
-        //}
-
         [When(@"The user '(.*)' Permitting")]
         public void WhenTheUserPermitting(ActionType action)
         {

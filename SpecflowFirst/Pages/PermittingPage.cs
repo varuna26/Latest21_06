@@ -81,7 +81,7 @@ namespace SpecflowFirst.Pages
         public void SavePermitting()
         {
             ClickElement(btnSavePermitting);
-            loginPage.LogOut();
+            //loginPage.LogOut();
         }
     }
 }

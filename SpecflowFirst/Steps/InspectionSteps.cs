@@ -18,7 +18,7 @@ namespace SpecflowFirst.Steps
         private readonly DriverHelper _driverHelper;
         CommonPage commonPage;
         WorkspacePage workspacePage;
-        InspectionPage inspectionPage;
+        //InspectionPage inspectionPage;
         PermittingPage permittingPage;
 
         public InspectionSteps(DriverHelper driverHelper, ScenarioContext scenarioContext)

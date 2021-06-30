@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SpecflowFirst.Pages;
+using SpecflowFramework.Utilities;
 using System;
 using TechTalk.SpecFlow;
 
@@ -26,9 +27,7 @@ namespace SpecflowFirst.Steps
             _driverHelper.webDriver.Manage().Window.Maximize();
             string trakitUrl = Settings.Default.TrakitAppUrl;
             _driverHelper.webDriver.Navigate().GoToUrl(trakitUrl);
-
             _driverHelper.webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
-
             _driverHelper.webDriver.FindElement(By.Id("details-button")).Click();
             _driverHelper.webDriver.FindElement(By.PartialLinkText("Proceed")).Click();
         }
@@ -37,9 +36,6 @@ namespace SpecflowFirst.Steps
         public void WhenIEnterInUsername(string userName)
         {
             loginPage.EnterUsernameToLogin(userName);
-
-            //BasePage<LoginPage>.Page.EnterUsernameToLogin(p0);
-            //BasePage<LoginPage>.EnterUsernameToLogin(p0);
         }
 
         [When(@"I Enter ""(.*)"" in Password")]
@@ -52,17 +48,12 @@ namespace SpecflowFirst.Steps
         public void WhenIClickLoginButton()
         {
             loginPage.ClickLogin();
-            //string pageTitle = _webDriver.Title;
-            //Assert.That(pageTitle, Does.Contain(""));
         }
 
         [Then(@"I should be able to login successfully")]
         public void ThenIShouldBeAbleToLoginSuccessfully()
         {
-            loginPage.LogOut();
-            //Assert.That(pageTitle, Does.Contain(""));
-            //genericPage.basePage.As<HomePage>().NewMethod();
+            
         }
-
     }
 }

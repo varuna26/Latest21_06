@@ -10,6 +10,10 @@ using TechTalk.SpecFlow;
 using System.Linq;
 using System.Text.RegularExpressions;
 using SeleniumExtras.WaitHelpers;
+using System.Reflection;
+using System.IO;
+using log4net;
+using log4net.Config;
 
 namespace SpecflowFirst.Pages
 {
@@ -22,6 +26,9 @@ namespace SpecflowFirst.Pages
         {
             //_scenarioContext = scenarioContext;
             _webDriver = webDriver;
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+
             //loginPage = new LoginPage(webDriver);
         }
 
