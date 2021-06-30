@@ -14,6 +14,7 @@ using System.Reflection;
 using System.IO;
 using log4net;
 using log4net.Config;
+using SpecflowFramework.Utilities;
 
 namespace SpecflowFirst.Pages
 {
@@ -53,9 +54,9 @@ namespace SpecflowFirst.Pages
         //IWebElement btnAdvanced => _webDriver.FindElement(By.Id("details-button"));
         //IWebElement partialLinkProceed => _webDriver.FindElement(By.PartialLinkText("Proceed"));
 
-        IWebElement iconPermitting => _webDriver.FindElement(By.Id("divIconPermit"));
+       public IWebElement iconPermitting => _webDriver.FindElement(By.Id("divIconPermit"));
 
-        IWebElement iconLandManagement => _webDriver.FindElement(By.Id("divIconGeo"));
+       public IWebElement iconLandManagement => _webDriver.FindElement(By.Id("divIconGeo"));
 
         By expandBarArrow => By.ClassName("rdExpand");
 
@@ -143,6 +144,7 @@ namespace SpecflowFirst.Pages
 
         public void ClickElement(IWebElement button)
         {
+            WaitsHelper.WaitUntilClickable(_webDriver, button, TimeSpan.FromSeconds(20));
             button.Click();
         }
 
@@ -166,10 +168,8 @@ namespace SpecflowFirst.Pages
         {
             if (moduleName.Contains(Convert.ToString(ModuleEnum.Permitting)))
             {
-                Thread.Sleep(1000);
-                iconPermitting.Click();
-                Thread.Sleep(1000);
-                SwitchToFrame(Convert.ToString(FrameNameEnum.FRMPERMIT));
+                PermittingPage permittingPage = new PermittingPage(_webDriver);
+                permittingPage.ClickPermittingIcon();
             }
             else if (moduleName.Replace(" ", "").Contains(Convert.ToString(ModuleEnum.LandManagement)))
             {
@@ -192,12 +192,12 @@ namespace SpecflowFirst.Pages
                 ((IJavaScriptExecutor)_webDriver).ExecuteScript("window.scrollBy(0, arguments[0].getBoundingClientRect().top + arguments[1]);", element, offset_y);
         }
 
-        public static IWebElement ScrollIntoView(IWebDriver driver, By locator, bool top = true)
-        {
-            IWebElement output = ((IJavaScriptExecutor)driver).ExecuteScript($"arguments[0].scrollIntoView({top.ToString().ToLower()}); return arguments[0];", Wait(driver).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator))) as IWebElement;
-            Thread.Sleep(100);
-            return output;
-        }
+        //public static IWebElement ScrollIntoView(IWebDriver driver, By locator, bool top = true)
+        //{
+        //    IWebElement output = ((IJavaScriptExecutor)driver).ExecuteScript($"arguments[0].scrollIntoView({top.ToString().ToLower()}); return arguments[0];", Wait(driver).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator))) as IWebElement;
+        //    //Thread.Sleep(100);
+        //    return output;
+        //}
 
         public static WebDriverWait Wait(IWebDriver driver, double seconds = 30)
         {
@@ -214,6 +214,7 @@ namespace SpecflowFirst.Pages
                 if (bar.FindElements(expandBarArrow).Count != 0)
                 {
                     IWebElement arrow = bar.FindElement(expandBarArrow);
+                    WaitsHelper.WaitUntilClickable(_webDriver, arrow, TimeSpan.FromSeconds(5));
                     arrow.Click();
                 }
                 else if (bar.FindElements(collapseBarArrow).Count != 0)
@@ -231,14 +232,8 @@ namespace SpecflowFirst.Pages
             }
             catch
             {
-                try
-                {
-                    //Wait(_webDriver, 3).Until(ExpectedConditions.ElementToBeClickable(bar.FindElement(collapseBarArrow)));
-                }
-                catch
-                {
-                    throw new Exception("Failed to get the collapse state of bar located " + barLocator.ToString());
-                }
+                LogHelper.Error("");
+                //Wait(_webDriver, 3).Until(ExpectedConditions.ElementToBeClickable(bar.FindElement(collapseBarArrow)));
             }
         }
 

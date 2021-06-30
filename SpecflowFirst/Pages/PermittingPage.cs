@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -63,7 +64,7 @@ namespace SpecflowFirst.Pages
         public void AddNotesOnPermitting()
         {
             ClickElement(btnAddNotes);
-            Thread.Sleep(1000);
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             SwitchToFrame(newWindowFrame);
         }
 
@@ -75,13 +76,24 @@ namespace SpecflowFirst.Pages
         public void HoverNotesOnPermitting()
         {
             HoverElement(btnAddNotes);
-            loginPage.LogOut();
+            //loginPage.LogOut();
         }
 
         public void SavePermitting()
         {
             ClickElement(btnSavePermitting);
             //loginPage.LogOut();
+        }
+
+        public void ClickPermittingIcon()
+        {
+            WaitsHelper.WaitUntilClickable(_webDriver, iconPermitting, TimeSpan.FromSeconds(20));
+
+            iconPermitting.Click();
+
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
+            SwitchToFrame(Convert.ToString(FrameNameEnum.FRMPERMIT));
         }
     }
 }

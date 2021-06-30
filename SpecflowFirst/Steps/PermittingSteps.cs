@@ -41,7 +41,7 @@ namespace SpecflowFirst.Steps
         public void GivenTheUserIsOnScreen(string moduleName)
         {
             permittingPage.ClickLeftPanelIcons(moduleName);
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             Assert.That(commonPage.getPageTitle(moduleName), Does.Contain(moduleName).IgnoreCase);
         }
 

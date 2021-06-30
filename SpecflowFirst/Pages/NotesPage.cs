@@ -25,9 +25,12 @@ namespace SpecflowFirst.Pages
 
         public void SaveNotes(FrameNameEnum frameNameEnum)
         {
+            // wait until window elements are loaded
+            
             common.EnterText(txtAreaNotes, "Test Data");
             common.ClickElement(btnSaveNotes);
-            Thread.Sleep(5000);
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            //Thread.Sleep(5000);
             SwitchToFrame(Convert.ToString(frameNameEnum));
         }
     }

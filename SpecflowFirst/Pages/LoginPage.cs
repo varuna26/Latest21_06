@@ -37,8 +37,7 @@ namespace SpecflowFirst.Pages
 
         public void ClickLogin()
         {
-            btnLogin.ButtonClick();
-            //return new HomePage(_webDriver);
+            ClickElement(btnLogin);
         }
 
         public void AppLogin(string userName, string password)
@@ -47,20 +46,21 @@ namespace SpecflowFirst.Pages
             string trakitUrl = Settings.Default.TrakitAppUrl;
             _webDriver.Navigate().GoToUrl(trakitUrl);
             _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
-            btnAdvanced.Click();
-            partialLinkProceed.Click();
+            ClickElement(btnAdvanced);
+            ClickElement(partialLinkProceed);
+            //btnAdvanced.Click();
+            //partialLinkProceed.Click();
 
             Login(userName, password);
         }
 
         public void Login(string userName, string password)
         {
-            WorkspacePage workspacePage = new WorkspacePage(_webDriver);
-            //LoginPage loginPage = new LoginPage(_webDriver);
+            //WorkspacePage workspacePage = new WorkspacePage(_webDriver);
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             EnterUsernameToLogin(userName);
             EnterPasswordToLogin(password);
             ClickLogin();
-            //return workspacePage;
         }
 
         public void LogOut()
