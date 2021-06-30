@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace SpecflowFirst.Steps
 {
     [Binding]
-    public class LoginSteps : DriverHelper
+    public sealed class LoginSteps
     {
         private DriverHelper _driverHelper;
         private readonly ScenarioContext _scenarioContext;
@@ -59,41 +59,9 @@ namespace SpecflowFirst.Steps
         [Then(@"I should be able to login successfully")]
         public void ThenIShouldBeAbleToLoginSuccessfully()
         {
+            loginPage.LogOut();
             //Assert.That(pageTitle, Does.Contain(""));
             //genericPage.basePage.As<HomePage>().NewMethod();
-        }
-
-        [Given(@"The User navigates to the website ""(.*)""")]
-        public void GivenTheUserNavigatesToTheWebsite(string p0)
-        {
-
-        }
-
-        [When(@"The User tries logging in with Username and Password")]
-        public void WhenTheUserTriesLoggingInWithUsernameAndPassword(Table table)
-        {
-            commonPage.NavigatetoUrl();
-            commonPage.Login("vv", "trakit1234");
-        }
-
-        [Then(@"The User should be able to login successfully")]
-        public void ThenTheUserShouldBeAbleToLoginSuccessfully()
-        {
-
-        }
-
-
-
-        [When(@"The User tries logging in with invalid UserName and Password")]
-        public void WhenTheUserTriesLoggingInWithInvalidUserNameAndPassword(Table table)
-        {
-
-        }
-
-        [Then(@"The User should not be able to login")]
-        public void ThenTheUserShouldNotBeAbleToLogin()
-        {
-           
         }
 
     }

@@ -17,13 +17,16 @@ namespace SpecflowFirst.Pages
     {
         //private ScenarioContext _scenarioContext;
         private readonly IWebDriver _webDriver;
+        //LoginPage loginPage;
         public CommonPage(IWebDriver webDriver)
         {
             //_scenarioContext = scenarioContext;
             _webDriver = webDriver;
+            //loginPage = new LoginPage(webDriver);
         }
 
         public string newWindowFrame = "rw";
+
         //private BasePage _basePage;
 
         //public BasePage basePage
@@ -40,41 +43,38 @@ namespace SpecflowFirst.Pages
         //}
 
         //IWebElement expandBarArrow => _webDriver.FindElement(By.ClassName("rdExpand"));
-        IWebElement advanced_button => _webDriver.FindElement(By.Id("details-button"));
-        IWebElement proceed_partialLink => _webDriver.FindElement(By.PartialLinkText("Proceed"));
+        //IWebElement btnAdvanced => _webDriver.FindElement(By.Id("details-button"));
+        //IWebElement partialLinkProceed => _webDriver.FindElement(By.PartialLinkText("Proceed"));
 
-        IWebElement permittingIcon => _webDriver.FindElement(By.Id("divIconPermit"));
+        IWebElement iconPermitting => _webDriver.FindElement(By.Id("divIconPermit"));
 
-        IWebElement landManagementIcon => _webDriver.FindElement(By.Id("divIconGeo"));
+        IWebElement iconLandManagement => _webDriver.FindElement(By.Id("divIconGeo"));
 
         By expandBarArrow => By.ClassName("rdExpand");
 
         By collapseBarArrow => By.ClassName("rdCollapse");
 
-        public void NavigatetoUrl()
-        {
-            _webDriver.Manage().Window.Maximize();
-            string trakitUrl = Settings.Default.TrakitAppUrl;
-            _webDriver.Navigate().GoToUrl(trakitUrl);
+        //public void AppLogin(string userName, string password)
+        //{
+        //    _webDriver.Manage().Window.Maximize();
+        //    string trakitUrl = Settings.Default.TrakitAppUrl;
+        //    _webDriver.Navigate().GoToUrl(trakitUrl);
+        //    _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+        //    btnAdvanced.Click();
+        //    partialLinkProceed.Click();
 
-            advanced_button.Click();
-            proceed_partialLink.Click();
+        //    Login(userName, password);
+        //}
 
-            //_driverHelper.webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
-
-            //_driverHelper.webDriver.FindElement(By.Id("details-button")).Click();
-            //_driverHelper.webDriver.FindElement(By.PartialLinkText("Proceed")).Click();
-        }
-
-        public WorkspacePage Login(string userName, string password)
-        {
-            WorkspacePage workspacePage = new WorkspacePage(_webDriver);
-            LoginPage loginPage = new LoginPage(_webDriver);
-            loginPage.EnterUsernameToLogin(userName);
-            loginPage.EnterPasswordToLogin(password);
-            loginPage.ClickLogin();
-            return workspacePage;
-        }
+        //public void Login(string userName, string password)
+        //{
+        //    WorkspacePage workspacePage = new WorkspacePage(_webDriver);
+        //    //LoginPage loginPage = new LoginPage(_webDriver);
+        //    loginPage.EnterUsernameToLogin(userName);
+        //    loginPage.EnterPasswordToLogin(password);
+        //    loginPage.ClickLogin();
+        //    //return workspacePage;
+        //}
 
         public string getPageTitle(string moduleName)
         {
@@ -96,43 +96,6 @@ namespace SpecflowFirst.Pages
             }
             return pageTitle;
         }
-
-        //public IWebElement ScrollIntoView_Center(IWebElement element)//, bool top = true)
-        //{
-        //    IWebElement output = ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center', inline: 'center'}); return arguments[0];") as IWebElement; //attempt for middle
-        //    Thread.Sleep(100);
-        //    return output;
-        //}
-
-        //public void ExpandBar(IWebElement bar)
-        //{
-        //    try
-        //    {
-        //        //Actions actions = new Actions(_webDriver);
-        //        //actions.MoveToElement(bar).DoubleClick(bar).Perform();
-        //        //((IJavaScriptExecutor)_webDriver).ExecuteScript("scroll(500,0)");
-        //        Thread.Sleep(5000);
-        //        ((IJavaScriptExecutor)_webDriver).ExecuteScript("scroll(700,0)");
-        //        Thread.Sleep(5000);
-        //        IWebElement arrow = bar.FindElement(By.TagName("a"));
-        //        Thread.Sleep(10000);
-        //        //Scroll(500, 0);
-        //        //Thread.Sleep(10000);
-        //        Actions().MoveToElement(arrow).Click(arrow).Perform();
-        //        Thread.Sleep(10000);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        //try
-        //        //{
-        //        //    Wait(driver, 3).Until(ExpectedConditions.ElementToBeClickable(bar.FindElement(collapseBarArrow)));
-        //        //}
-        //        //catch
-        //        //{
-        //        //    throw new Exception("Failed to get the collapse state of bar located " + barLocator.ToString());
-        //        //}
-        //    }
-        //}
 
         public void Scroll(int horizontal, int vertical)
         {
@@ -183,7 +146,7 @@ namespace SpecflowFirst.Pages
 
         public void OpenWindow(string newTabHandle)
         {
-            _webDriver.SwitchTo().Window(newTabHandle); 
+            _webDriver.SwitchTo().Window(newTabHandle);
         }
 
         public void HoverElement(IWebElement webElement)
@@ -197,13 +160,13 @@ namespace SpecflowFirst.Pages
             if (moduleName.Contains(Convert.ToString(ModuleEnum.Permitting)))
             {
                 Thread.Sleep(1000);
-                permittingIcon.Click();
+                iconPermitting.Click();
                 Thread.Sleep(1000);
                 SwitchToFrame(Convert.ToString(FrameNameEnum.FRMPERMIT));
             }
             else if (moduleName.Replace(" ", "").Contains(Convert.ToString(ModuleEnum.LandManagement)))
             {
-                landManagementIcon.Click();
+                iconLandManagement.Click();
                 SwitchToFrame(Convert.ToString(FrameNameEnum.FRMLAND));
             }
             else if (moduleName.Contains(Convert.ToString(ModuleEnum.Workspace)))
@@ -236,7 +199,7 @@ namespace SpecflowFirst.Pages
             return wait;
         }
 
-        public void ExpandBar(By barLocator=null)
+        public void ExpandBar(By barLocator = null)
         {
             IWebElement bar = ScrollIntoView_Center(barLocator);
             try
@@ -246,7 +209,7 @@ namespace SpecflowFirst.Pages
                     IWebElement arrow = bar.FindElement(expandBarArrow);
                     arrow.Click();
                 }
-                else if(bar.FindElements(collapseBarArrow).Count != 0)
+                else if (bar.FindElements(collapseBarArrow).Count != 0)
                 {
                     // dont do anything
                 }
@@ -288,14 +251,19 @@ namespace SpecflowFirst.Pages
             //Wait for MoveToElement (500), then wait for Css Transition (500).
             Thread.Sleep(1000);
 
-            foreach(IWebElement item in menuItems.FindElements(By.ClassName("rmItem")))
+            foreach (IWebElement item in menuItems.FindElements(By.ClassName("rmItem")))
             {
-                string menuItemText = item.Text;
-                int comparisonResult = string.Compare(optionText, item.Text, StringComparison.OrdinalIgnoreCase);
-                if(comparisonResult == 0)
+                if (string.Compare(optionText, item.Text, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     item.Click();
+                    break;
                 }
+                //string menuItemText = item.Text;
+                //int comparisonResult = string.Compare(optionText, item.Text, StringComparison.OrdinalIgnoreCase);
+                //if(comparisonResult == 0)
+                //{
+                //    item.Click();
+                //}
             }
 
 
@@ -324,14 +292,6 @@ namespace SpecflowFirst.Pages
             //    Actions().MoveByOffset(0, ((menu.Size.Height / 2) - 1)).MoveToElement(target).Click(target).Perform();
             //else
             //    Actions().MoveByOffset(0, -((menu.Size.Height / 2) - 1)).MoveToElement(target).Click(target).Perform();
-        }
-
-        public static string RegexExact(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s))
-                return "^\\s*$";
-
-            return "^" + Regex.Escape(s) + "$";
         }
     }
 }

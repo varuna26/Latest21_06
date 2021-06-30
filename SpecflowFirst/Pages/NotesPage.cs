@@ -7,11 +7,11 @@ using System.Threading;
 
 namespace SpecflowFirst.Pages
 {
-    public class NotesPage
+    public class NotesPage : CommonPage
     {
         private IWebDriver _webDriver;
         CommonPage common;
-        public NotesPage(IWebDriver webDriver)
+        public NotesPage(IWebDriver webDriver) : base(webDriver)
         {
             _webDriver = webDriver;
             common = new CommonPage(webDriver);
@@ -23,11 +23,12 @@ namespace SpecflowFirst.Pages
 
        public IWebElement notesButtonToolTip => _webDriver.FindElement(By.XPath("//*[@id='RadToolTipWrapper_ctl09_C_ctl00_rttNotes']/table/tbody/tr[2]/td[2]/div/div"));
 
-        public void SaveNotes()
+        public void SaveNotes(FrameNameEnum frameNameEnum)
         {
-            common.EnterText(txtAreaNotes, "test text to be entered and verified if it works fine");
+            common.EnterText(txtAreaNotes, "Test Data");
             common.ClickElement(btnSaveNotes);
             Thread.Sleep(5000);
+            SwitchToFrame(Convert.ToString(frameNameEnum));
         }
     }
 }
