@@ -24,22 +24,37 @@ namespace SpecflowFirst.Pages
         IWebElement errorMsgLogout => _webDriver.FindElement(By.Id("lblError"));
         IWebElement btnLogBackIn => _webDriver.FindElement(By.XPath("//span[@id=\"lblError\"]/a"));
 
-
+        /// <summary>
+        /// Enter User Name on Login Page
+        /// </summary>
+        /// <param name="userName"></param>
         public void EnterUsernameToLogin(string userName)
         {
             txtUsername.EnterText(userName);
         }
 
+        /// <summary>
+        /// Enter Password on Login Page
+        /// </summary>
+        /// <param name="password"></param>
         public void EnterPasswordToLogin(string password)
         {
             txtPassword.EnterText(password);
         }
 
+        /// <summary>
+        /// Click Login Button
+        /// </summary>
         public void ClickLogin()
         {
             ClickElement(btnLogin);
         }
 
+        /// <summary>
+        /// Application VPN bypass to open CommDev login page
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
         public void AppLogin(string userName, string password)
         {
             _webDriver.Manage().Window.Maximize();
@@ -54,6 +69,11 @@ namespace SpecflowFirst.Pages
             Login(userName, password);
         }
 
+        /// <summary>
+        /// Login to the application
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
         public void Login(string userName, string password)
         {
             //WorkspacePage workspacePage = new WorkspacePage(_webDriver);
@@ -63,10 +83,14 @@ namespace SpecflowFirst.Pages
             ClickLogin();
         }
 
+        /// <summary>
+        /// Logout of the application
+        /// </summary>
         public void LogOut()
         {
+            By userNameLocator = By.ClassName("rmLast");
             IWebElement lblUserName = _webDriver.FindElement(By.ClassName("rmLast"));
-            HoverElement(lblUserName);
+            HoverElement(userNameLocator, lblUserName);
 
             IWebElement itemLogout = lblUserName.FindElements(By.ClassName("rmLast")).First();
             {

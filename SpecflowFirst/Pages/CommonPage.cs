@@ -1,24 +1,17 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using TechTalk.SpecFlow;
-using System.Linq;
-using System.Text.RegularExpressions;
-using SeleniumExtras.WaitHelpers;
-using System.Reflection;
-using System.IO;
-using log4net;
+﻿using log4net;
 using log4net.Config;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using SpecflowFramework.Utilities;
+using System;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 
 namespace SpecflowFirst.Pages
 {
-   public class CommonPage
+    public class CommonPage
     {
         //private ScenarioContext _scenarioContext;
         private readonly IWebDriver _webDriver;
@@ -54,6 +47,8 @@ namespace SpecflowFirst.Pages
         //IWebElement btnAdvanced => _webDriver.FindElement(By.Id("details-button"));
         //IWebElement partialLinkProceed => _webDriver.FindElement(By.PartialLinkText("Proceed"));
 
+       public IWebElement lblIconPermitting => _webDriver.FindElement(By.Id("spanIconPermit"));
+
        public IWebElement iconPermitting => _webDriver.FindElement(By.Id("divIconPermit"));
 
        public IWebElement iconLandManagement => _webDriver.FindElement(By.Id("divIconGeo"));
@@ -84,6 +79,11 @@ namespace SpecflowFirst.Pages
         //    //return workspacePage;
         //}
 
+        /// <summary>
+        /// Return Page title, to be used in assertions, based on module names
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <returns></returns>
         public string getPageTitle(string moduleName)
         {
             string pageTitle = "";
@@ -105,16 +105,33 @@ namespace SpecflowFirst.Pages
             return pageTitle;
         }
 
+        /// <summary>
+        /// Method to scroll the bar horizontal and vertical
+        /// </summary>
+        /// <param name="horizontal"></param>
+        /// <param name="vertical"></param>
         public void Scroll(int horizontal, int vertical)
         {
             ((IJavaScriptExecutor)_webDriver).ExecuteScript("scroll(arguments[0], arguments[1])", horizontal, vertical);
         }
 
+        /// <summary>
+        /// Generic Actions class method for mouse actions
+        /// </summary>
+        /// <returns></returns>
         public Actions Actions()
         {
             return new Actions(_webDriver);
         }
 
+        /// <summary>
+        /// Scroll to a particular element
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="element"></param>
+        /// <param name="offset_y"></param>
+        /// <param name="scroll_horizontal"></param>
+        /// <param name="offset_x"></param>
         public static void ScrollToElement(IWebDriver driver, IWebElement element, int offset_y = -200, bool scroll_horizontal = false, int offset_x = -500)
         {
             //Wait(driver).Until(d => element.Enabled);
@@ -125,45 +142,79 @@ namespace SpecflowFirst.Pages
                 ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, arguments[0].getBoundingClientRect().top + arguments[1]);", element, offset_y);
         }
 
+        /// <summary>
+        /// Method to switch iframes based on Frame name
+        /// </summary>
+        /// <param name="frameName"></param>
         public void SwitchToFrame(string frameName)
         {
             _webDriver.SwitchTo().DefaultContent();
             _webDriver.SwitchTo().Frame(frameName);
         }
 
+        /// <summary>
+        /// Method to switch iframes based on frame id
+        /// </summary>
+        /// <param name="frameId"></param>
         public void SwitchToFrame(int frameId)
         {
             _webDriver.SwitchTo().DefaultContent();
             _webDriver.SwitchTo().Frame(frameId);
         }
 
+        /// <summary>
+        /// Generic method to execute any javascript command
+        /// </summary>
+        /// <param name="script"></param>
         public void ExecuteScript(string script)
         {
             ((IJavaScriptExecutor)_webDriver).ExecuteScript(script);
         }
 
+        /// <summary>
+        /// Method to click an element with Explicit Wait
+        /// </summary>
+        /// <param name="button"></param>
         public void ClickElement(IWebElement button)
         {
             WaitsHelper.WaitUntilClickable(_webDriver, button, TimeSpan.FromSeconds(20));
             button.Click();
         }
 
+        /// <summary>
+        /// Method for Webdriver SendKeys
+        /// </summary>
+        /// <param name="textElement"></param>
+        /// <param name="text"></param>
         public void EnterText(IWebElement textElement, string text)
         {
             textElement.SendKeys(text);
         }
 
+        /// <summary>
+        /// Open a new popup
+        /// </summary>
+        /// <param name="newTabHandle"></param>
         public void OpenWindow(string newTabHandle)
         {
             _webDriver.SwitchTo().Window(newTabHandle);
         }
 
-        public void HoverElement(IWebElement webElement)
+        /// <summary>
+        /// Method to mouseover an element
+        /// </summary>
+        /// <param name="webElement"></param>
+        public void HoverElement(By elementLocator, IWebElement webElement)
         {
+            WaitsHelper.WaitUntilExists(_webDriver, elementLocator, TimeSpan.FromSeconds(10));
             Actions().MoveToElement(webElement).Build().Perform();
             Thread.Sleep(5000);
         }
 
+        /// <summary>
+        /// Generic method to click Panel icons on Workspace screen based on module name
+        /// </summary>
+        /// <param name="moduleName"></param>
         public void ClickLeftPanelIcons(string moduleName)
         {
             if (moduleName.Contains(Convert.ToString(ModuleEnum.Permitting)))
@@ -182,6 +233,13 @@ namespace SpecflowFirst.Pages
             }
         }
 
+        /// <summary>
+        /// Scroll to an element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="offset_y"></param>
+        /// <param name="scroll_horizontal"></param>
+        /// <param name="offset_x"></param>
         public void ScrollToElement(IWebElement element, int offset_y = -200, bool scroll_horizontal = false, int offset_x = -500)
         {
             Wait(_webDriver).Until(d => element.Enabled);
@@ -199,6 +257,12 @@ namespace SpecflowFirst.Pages
         //    return output;
         //}
 
+        /// <summary>
+        /// Generic Wait method
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
         public static WebDriverWait Wait(IWebDriver driver, double seconds = 30)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
@@ -206,6 +270,10 @@ namespace SpecflowFirst.Pages
             return wait;
         }
 
+        /// <summary>
+        /// Expand the bars based on module name and bar element id
+        /// </summary>
+        /// <param name="barLocator"></param>
         public void ExpandBar(By barLocator = null)
         {
             IWebElement bar = ScrollIntoView_Center(barLocator);
@@ -224,6 +292,7 @@ namespace SpecflowFirst.Pages
                 else
                 {
                     // Error
+                    LogHelper.Error("Error");
                 }
 
                 //ScrollToElement(_webDriver, arrow);
@@ -237,12 +306,22 @@ namespace SpecflowFirst.Pages
             }
         }
 
+        /// <summary>
+        /// Scroll to a paticular element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public IWebElement ScrollIntoView_Center(By element)//, bool top = true)
         {
             IWebElement output = ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center', inline: 'center'}); return arguments[0];", Wait(_webDriver).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(element))) as IWebElement; //attempt for middle
             return output;
         }
 
+        /// <summary>
+        /// Method to mouseover dropdown menu items in panes
+        /// </summary>
+        /// <param name="elementLocator"></param>
+        /// <param name="optionText"></param>
         public void HoverMenuAndSelectOption(By elementLocator, string optionText)
         {
             Actions actions = new Actions(_webDriver);

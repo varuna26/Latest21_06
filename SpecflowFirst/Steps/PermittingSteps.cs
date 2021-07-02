@@ -2,10 +2,6 @@
 using OpenQA.Selenium;
 using SpecflowFirst.Pages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SpecflowFirst.Steps
@@ -16,9 +12,7 @@ namespace SpecflowFirst.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly DriverHelper _driverHelper;
         CommonPage commonPage;
-        //WorkspacePage workspacePage;
         PermittingPage permittingPage;
-        //NotesPage notesPage;
         LoginPage loginPage;
         public PermittingSteps(DriverHelper driverHelper, ScenarioContext scenarioContext)
         {

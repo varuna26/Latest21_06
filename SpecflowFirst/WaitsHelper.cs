@@ -35,6 +35,11 @@ namespace SpecflowFirst
             webElement = WaitFor(webDriver, timeSpan).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(elementLocator));
             return webElement;
         }
+
+        public static void WaitUntilFrameAvailableAndSwitch(IWebDriver webDriver, string frameLocator, TimeSpan timeSpan)
+        {
+            WaitFor(webDriver, timeSpan).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
+        }
     }
 
 }
